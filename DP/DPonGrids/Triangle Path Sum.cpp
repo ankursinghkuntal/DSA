@@ -13,6 +13,7 @@
     //     int dg = triangle[i][j] + RecMinimizeSum(i + 1, j + 1, n, triangle);
     //     return min(d, dg);
     // }
+
     // // 2.Memoisation
     // int MemoMinimizeSum(int i, int j, int n, vector<vector<int>>& triangle, vector<vector<int>>& dp) {
     //     if (i == n - 1) return triangle[n - 1][j];
@@ -22,6 +23,7 @@
     //     int dg = triangle[i][j] + MemoMinimizeSum(i + 1, j + 1, n, triangle, dp);
     //     return dp[i][j] = min(d, dg);
     // }
+    
     // // 3.Tabulation
     // int TabMinimizeSum(int n, vector<vector<int>>&triangle){
     //     int p = triangle.size();

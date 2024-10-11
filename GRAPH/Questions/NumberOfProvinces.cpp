@@ -62,3 +62,91 @@
     //     }
     //     return count;
     // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Using DisJoint Set DataStructure
+
+
+// class DisJoint {
+// public:
+//     vector<int> rank, parent, size;
+
+//     DisJoint(int n) {
+//         rank.resize(n+1, 0);
+//         parent.resize(n+1);
+//         size.resize(n+1, 1);
+
+//         for (int i = 0; i < n+1; i++) {
+//             parent[i] = i;
+//         }
+//     }
+
+//     int findUltimateParent(int node) {
+//         if (node == parent[node]) {
+//             return node;
+//         }
+//         return parent[node] = findUltimateParent(parent[node]);
+//     }
+
+//     void UnionByRank(int u, int v) {
+//         int ult_parent_u = findUltimateParent(u);
+//         int ult_parent_v = findUltimateParent(v);
+//         if (ult_parent_u == ult_parent_v) return;
+
+//         if (rank[ult_parent_u] > rank[ult_parent_v]) {
+//             parent[ult_parent_v] = ult_parent_u;
+//         } else if (rank[ult_parent_u] < rank[ult_parent_v]) {
+//             parent[ult_parent_u] = ult_parent_v;
+//         } else {
+//             parent[ult_parent_v] = ult_parent_u;
+//             rank[ult_parent_u]++;
+//         }
+//     }
+
+//     void UnionBySize(int u, int v) {
+//         int ult_parent_u = findUltimateParent(u);
+//         int ult_parent_v = findUltimateParent(v);
+//         if (ult_parent_u == ult_parent_v) return;
+
+//         if (size[ult_parent_u] >= size[ult_parent_v]) {
+//             parent[ult_parent_v] = ult_parent_u;
+//             size[ult_parent_u] += size[ult_parent_v];
+//         } else {
+//             parent[ult_parent_u] = ult_parent_v;
+//             size[ult_parent_v] += size[ult_parent_u];
+//         }
+//     }
+// };
+
+
+// class Solution {
+//   public:
+//     int numProvinces(vector<vector<int>> adj, int V) {
+//         // code here
+//         DisJoint ds(V);
+//         for(int i = 0; i < adj.size(); i++){
+//             for(int j = 0; j < adj[0].size(); j++){
+//                 if(adj[i][j] == 1){
+//                     ds.UnionBySize(i,j);
+//                 }
+//             }
+//         }
+//         int cnt = 0;
+//         for(int i = 0; i < V; i++){
+//             if(ds.parent[i] == i) cnt++;
+//         }
+//         return cnt;
+//     }
+// };

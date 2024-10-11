@@ -1,3 +1,6 @@
+// with obstacles
+
+
 // You are given a matrix grid of n x  m size consisting of values 0 and 1. A value of 1 means that you can enter that cell and 0 
 // implies that entry to that cell is not allowed.
 
