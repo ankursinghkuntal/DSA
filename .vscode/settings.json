@@ -11,6 +11,7 @@
         "array": "cpp",
         "deque": "cpp",
         "list": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "iostream": "cpp"
     }
 }
