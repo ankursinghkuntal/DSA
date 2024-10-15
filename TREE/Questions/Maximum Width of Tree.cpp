@@ -1,4 +1,4 @@
-// Max Width and also called as DIAMETER of the TREE
+// Max Width 
 
 
 
