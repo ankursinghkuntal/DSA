@@ -12,6 +12,7 @@
         "deque": "cpp",
         "list": "cpp",
         "span": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "functional": "cpp"
     }
 }
