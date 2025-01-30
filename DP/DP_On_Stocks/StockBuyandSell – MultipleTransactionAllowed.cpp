@@ -4,6 +4,7 @@
 // Note: Buying and Selling of the stock can be done multiple times, but you can only hold one stock at a time. 
 // In order to buy another stock, firstly you have to sell the current holding stock.
 
+// buy == 1, sell = 0;
 
 // //  0. T.C. = O(n)
 //     int maxProfit(vector<int>& prices) {

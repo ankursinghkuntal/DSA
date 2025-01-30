@@ -5,7 +5,9 @@ int main(){
     
     int v, e; cin >> v >> e;
     int adj[v+1][v+1];
+
     memset(adj,0,sizeof(adj));
+    
     for(int edge = 0; edge < e; edge++){
             int u,v;
             cin >> u >> v;
