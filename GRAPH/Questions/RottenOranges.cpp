@@ -56,3 +56,73 @@
 //     // If there are still fresh oranges left, return -1; otherwise, return the time taken
 //     return freshOranges == 0 ? tm : -1;
 // }
+
+
+
+
+
+
+
+
+
+// class Solution {
+//   public:
+//     // Function to find minimum time required to rot all oranges.
+    
+//     bool isValid(int nr, int nc, int n, int m){
+//         return nr >= 0 && nr < n && nc >= 0 && nc < m;
+//     }
+    
+//     int orangesRotting(vector<vector<int>>& mat) {
+        
+//         int n = mat.size();
+//         int m = mat[0].size();
+        
+//         vector<vector<int>>rot_time(n, vector<int>(m,-1));
+        
+//         queue<pair<int,int>>q;
+        
+//         for(int i = 0; i < n; i++){
+//             for(int j = 0; j < m; j++){
+//                 if(mat[i][j] == 2){
+//                     q.push({i,j});
+//                     rot_time[i][j] = 0;
+//                 }
+//             }
+//         }
+        
+//         vector<int>delRow = {-1,0,0,1};
+//         vector<int>delCol = {0,-1,1,0};
+        
+//         while(!q.empty()){
+//             int row = q.front().first;
+//             int col = q.front().second;
+//             q.pop();
+            
+//             for(int i = 0; i < 4; i++){
+//                 int nr = row + delRow[i];
+//                 int nc = col + delCol[i];
+                
+//                 if(isValid(nr,nc,n,m) && mat[nr][nc] == 1){
+//                      if(rot_time[nr][nc] == -1 || rot_time[nr][nc] >= rot_time[row][col]+1){
+//                          rot_time[nr][nc] = rot_time[row][col]+1;
+//                          q.push({nr,nc});
+//                      }
+//                 }
+                
+//             }
+            
+//         }
+        
+//        int maxTime = 0;
+        
+//         for(int i = 0; i < n; i++){
+//             for(int j = 0; j < m; j++){
+//                 if(mat[i][j] == 1 && rot_time[i][j] == -1) return -1;
+//                 else if(rot_time[i][j] != -1) maxTime = max(maxTime,rot_time[i][j]);
+//             }
+//         }
+        
+//         return maxTime;
+//     }
+// };
