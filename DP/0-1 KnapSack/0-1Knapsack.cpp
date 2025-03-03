@@ -25,6 +25,8 @@ int maxProfit(int val[], int wt[], int W, int n) {
 int maxProfit(int val[], int wt[], int W, int n, vector<vector<int>>dp) {
     for(int i = 0; i <= n; i++) dp[i][0] = 0;
     for(int j = 1; j <= W; j++) dp[0][j] = 0;
+
+    if(dp[n][W] != -1) return dp[n][W];
     
     if (wt[n-1] <= W) {
         return dp[n][W] = max(maxProfit(val, wt, W, n-1), val[n-1] + maxProfit(val, wt, W-wt[n-1], n-1));
@@ -32,6 +34,20 @@ int maxProfit(int val[], int wt[], int W, int n, vector<vector<int>>dp) {
         return dp[n][W] = maxProfit(val, wt, W, n-1);
     }
 }
+
+// int memo(int n, int capacity, vector<int> &val, vector<int> &wt, vector<vector<int>>&dp){
+        
+//     if(n==0 || capacity==0) return dp[n][capacity] = 0;
+    
+//     if(dp[n][capacity] != -1) return dp[n][capacity];
+    
+//     if(wt[n-1] <= capacity){
+//         return dp[n][capacity] = max ( memo(n-1, capacity, val, wt, dp), val[n-1]+memo(n-1, capacity-wt[n-1], val, wt, dp));
+//     }else{
+//         return dp[n][capacity] = memo(n-1, capacity, val, wt, dp);
+//     }
+    
+// }
 
 // 3.Tabulation
 int maxProfitTab(int val[], int wt[], int W, int n) {
