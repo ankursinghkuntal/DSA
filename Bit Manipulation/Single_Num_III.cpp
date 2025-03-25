@@ -33,7 +33,7 @@ vector<int> Find_Single_Num(vector<int>&arr, int n){
 
 int main(){
     int n = 12;
-    vector<int>arr = {1,2,2,3,4,4,5,5,3,6,6,7};
+    vector<int>arr = {2,1,2,3,4,1};
     vector<int>ans = Find_Single_Num(arr,n);
     for(int it : ans){
         cout << it << " ";
