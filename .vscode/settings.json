@@ -13,7 +13,8 @@
     "list": "cpp",
     "span": "cpp",
     "iostream": "cpp",
-    "functional": "cpp"
+    "functional": "cpp",
+    "ostream": "cpp"
   },
   "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
   "C_Cpp_Runner.cCompilerPath": "gcc",

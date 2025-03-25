@@ -136,23 +136,26 @@ ll power(ll base, ll exp) {
 
 void solve() {
     
-    int n; cin >> n;
+    int n, x; cin >> n >> x;
     
-    int arr[n];
+    vector<int>arr(n);
     
-    for(int i = 0; i < n; i++) cin >> arr[i];
-    
-	int brr[10] = {0};
+    int total = 0;
+    for(int i = 0; i < n; i++){
+    	cin >> arr[i];
+    	if(arr[i] >= x) total++;
+    } 
+    sort(arr.begin(), arr.end(), greater<int>());
+    int cnt = 0;
+    for(int i = total;i < n; i++){
+    	cnt++;
+    	if(cnt*arr[i] >= x){
+    		total++;
+    		cnt = 0;
+    	}
+    }
 	
-	for(int i = 0; i < n; i++){
-		brr[arr[i]]+=1;
-		if(brr[0] >= 3 && brr[2] >= 2 && brr[3] >= 1 && brr[5] >= 1 && brr[1] >= 1){
-			cout << i+1 << endl;
-			return;
-		} 
-	}
-	
-	cout << 0 << endl;
+	cout << total << endl;
 	
 }
 
