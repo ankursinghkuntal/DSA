@@ -74,47 +74,47 @@
 // //  of the tree.
 
 
-//     // class Solution
-//     // {
-//     //     public:
-//     //     //Function to find the vertical order traversal of Binary Tree.
-//     //     vector<int> verticalOrder(Node *root)
-//     //     {
-//     //         vector<int> vertical_traversal;
-//     //         if (!root) return vertical_traversal;
+    class Solution
+    {
+        public:
+        //Function to find the vertical order traversal of Binary Tree.
+        vector<int> verticalOrder(Node *root)
+        {
+            vector<int> vertical_traversal;
+            if (!root) return vertical_traversal;
             
-//     //         // q stores {node, vertical position}
-//     //         queue<pair<Node*, int>> q;
-//     //         q.push({root, 0});
+            // q stores {node, vertical position}
+            queue<pair<Node*, int>> q;
+            q.push({root, 0});
             
-//     //         // map to store vertical position and corresponding nodes' values
-//     //         map<int, vector<int>> mp;
+            // map to store vertical position and corresponding nodes' values
+            map<int, vector<int>> mp;
             
-//     //         // BFS traversal
-//     //         while (!q.empty()) {
-//     //             Node* curr = q.front().first;
-//     //             int ver = q.front().second;  // vertical position
-//     //             q.pop();
+            // BFS traversal
+            while (!q.empty()) {
+                Node* curr = q.front().first;
+                int ver = q.front().second;  // vertical position
+                q.pop();
                 
-//     //             // Insert the node's value into the corresponding vertical index
-//     //             mp[ver].push_back(curr->data);
+                // Insert the node's value into the corresponding vertical index
+                mp[ver].push_back(curr->data);
                 
-//     //             // Process left and right children
-//     //             if (curr->left) {
-//     //                 q.push({curr->left, ver - 1});
-//     //             }
-//     //             if (curr->right) {
-//     //                 q.push({curr->right, ver + 1});
-//     //             }
-//     //         }
+                // Process left and right children
+                if (curr->left) {
+                    q.push({curr->left, ver - 1});
+                }
+                if (curr->right) {
+                    q.push({curr->right, ver + 1});
+                }
+            }
     
-//     //         // Collecting the result from the map
-//     //         for (auto it : mp) {
-//     //             for (auto it1 : it.second) {
-//     //                 vertical_traversal.push_back(it1);  // Insert the sorted nodes from multiset into result
-//     //             }
-//     //         }
-//     //         return vertical_traversal;
-//     //     }
-//     // };
+            // Collecting the result from the map
+            for (auto it : mp) {
+                for (auto it1 : it.second) {
+                    vertical_traversal.push_back(it1);  // Insert the sorted nodes from multiset into result
+                }
+            }
+            return vertical_traversal;
+        }
+    };
  

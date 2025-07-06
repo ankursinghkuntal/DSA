@@ -7,34 +7,34 @@
     
 
     
-    // vector<int> bottomView(Node *root) {
-    //     vector<int> bottomview;
-    //     if (!root) return bottomview;
+    vector<int> bottomView(Node *root) {
+        vector<int> bottomview;
+        if (!root) return bottomview;
         
-    //     queue<pair<Node*, int>> q;
-    //     q.push({root, 0});
+        queue<pair<Node*, int>> q;
+        q.push({root, 0});
         
-    //     map<int, int> mp;
+        map<int, int> mp;
         
-    //     while (!q.empty()) {
-    //         Node* curr = q.front().first;
-    //         int ver = q.front().second;
-    //         q.pop();
+        while (!q.empty()) {
+            Node* curr = q.front().first;
+            int ver = q.front().second;
+            q.pop();
             
-    //         // Overwrite the value for each vertical position since we're interested in the bottom-most node.
-    //         mp[ver] = curr->data;
+            // Overwrite the value for each vertical position since we're interested in the bottom-most node.
+            mp[ver] = curr->data;
             
-    //         if (curr->left) {
-    //             q.push({curr->left, ver - 1});
-    //         }
-    //         if (curr->right) {
-    //             q.push({curr->right, ver + 1});
-    //         }
-    //     }
+            if (curr->left) {
+                q.push({curr->left, ver - 1});
+            }
+            if (curr->right) {
+                q.push({curr->right, ver + 1});
+            }
+        }
 
-    //     for (auto it : mp) {
-    //         bottomview.push_back(it.second);
-    //     }
+        for (auto it : mp) {
+            bottomview.push_back(it.second);
+        }
         
-    //     return bottomview;
-    // }
+        return bottomview;
+    }

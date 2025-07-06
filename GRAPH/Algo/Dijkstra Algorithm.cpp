@@ -17,56 +17,68 @@
 
 
 // Using priority Queue
-    // vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
-    // {
-    //     vector<int>dist(V,1e9);
-    //     priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>>pq;
-    //     dist[S] = 0;
-    //     pq.push({S,0});
-    //     while(!pq.empty()){
-    //         int node = pq.top().first;
-    //         int currwt = pq.top().second;
-    //         pq.pop();
-    //         for(auto it : adj[node]){
-    //             int v = it[0];
-    //             int wt = it[1];
-    //             if(currwt + wt < dist[v]){
-    //                 dist[v] = currwt + wt;
-    //                 pq.push({v, dist[v]});
-    //             }
-    //         }
-    //     }
-    //     return dist;
-    // }
+
+vector<int> dijkstra(int V, vector<pair<int, int>> adj[], int S) {
+    vector<int> dist(V, 1e9);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
+    dist[S] = 0;
+    pq.push({0, S}); // Corrected: {distance, node}
+
+    while (!pq.empty()) {
+        int currwt = pq.top().first; // Distance
+        int node = pq.top().second;  // Node
+        pq.pop();
+
+        if (currwt > dist[node]) continue; // Optimization to skip outdated entries
+
+        for (auto it : adj[node]) {
+            int v = it.first;  // Neighbor node
+            int wt = it.second; // Edge weight
+
+            if (currwt + wt < dist[v]) {
+                dist[v] = currwt + wt;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}
+// The above code uses a priority queue to efficiently find the shortest path from the source node S to all other nodes in the graph.
+// The graph is represented as an adjacency list, where each node has a list of pairs representing its neighbors and the weights of the edges connecting them.
 
 
 
 
 
     // using Set
-    // vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
-    // {
-    //     vector<int>dist(V,1e9);
-    //     set<pair<int,int>>st;
-    //     st.insert({S,0});
-    //     dist[S] = 0;
-    //     while(!st.empty()){
-    //         auto it = *(st.begin());
-    //         int node = it.first;
-    //         int currwt = it.second;
+
+    // vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int src) {
+    //     int V = adj.size();
+        
+    //     vector<int> dis(V, 1e9);
+    //     set<pair<int, int>> st; // {distance, node}
+    //     st.insert({0, src});
+    //     dis[src] = 0;
+        
+    //     while (!st.empty()) {
+    //         auto it = *(st.begin()); // Smallest distance node
+    //         int currDis = it.first;
+    //         int node = it.second;
     //         st.erase(it);
-    //         for(auto it : adj[node]){
-    //             int v = it[0];
-    //             int wt = it[1];
-    //             if(currwt + wt < dist[v]){
-    //                 if(dist[v] != 1e9) {
-    //                     st.erase({v,dist[v]});
+    
+    //         for (auto edge : adj[node]) {
+    //             int v = edge.first;   // Neighbor node
+    //             int wt = edge.second; // Edge weight
+    
+    //             if (currDis + wt < dis[v]) {
+    //                 if (dis[v] != 1e9) {
+    //                     st.erase({dis[v], v}); // Remove outdated entry
     //                 }
-    //                 dist[v] = currwt + wt;
-    //                 st.insert({v,dist[v]});
+    //                 dis[v] = currDis + wt;
+    //                 st.insert({dis[v], v}); // Insert updated entry
     //             }
     //         }
-            
     //     }
-    //     return dist;
+    //     return dis;
     // }

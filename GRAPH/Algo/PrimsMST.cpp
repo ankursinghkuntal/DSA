@@ -7,36 +7,36 @@
 
 
 
-    // int spanningTree(int V, vector<vector<int>> adj[])
-    // {
-    //     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    //     vector<bool> vis(V, false);
-    //     int sum = 0;
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        vector<bool> vis(V, false);
+        int sum = 0;
     
-    //     pq.push({0, 0});
+        pq.push({0, 0});
     
-    //     while (!pq.empty()) {
-    //         int wt = pq.top().first;
-    //         int node = pq.top().second;
-    //         pq.pop();
+        while (!pq.empty()) {
+            int wt = pq.top().first;
+            int node = pq.top().second;
+            pq.pop();
     
-    //         if (vis[node]) continue;
+            if (vis[node]) continue;
     
-    //         sum += wt;
-    //         vis[node] = true;
+            sum += wt;
+            vis[node] = true;
     
-    //         for (auto it : adj[node]) {
-    //             int adjNode = it[0];
-    //             int wt2 = it[1];
+            for (auto it : adj[node]) {
+                int adjNode = it[0];
+                int wt2 = it[1];
     
-    //             if (!vis[adjNode]) {
-    //                 pq.push({wt2, adjNode});
-    //             }
-    //         }
-    //     }
+                if (!vis[adjNode]) {
+                    pq.push({wt2, adjNode});
+                }
+            }
+        }
         
-    //     return sum;
-    // }
+        return sum;
+    }
 
 
 

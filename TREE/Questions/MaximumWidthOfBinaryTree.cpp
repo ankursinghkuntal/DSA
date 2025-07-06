@@ -26,7 +26,7 @@
     //         long long first,last;
     //         long long min = q.front().second;
             
-    //         for(int i = 0; i<size; i++){
+    //         for(int i = 0; i < size; i++){
     //             long long id = q.front().second - min; 
     //             TreeNode *node = q.front().first;
     //             q.pop();
