@@ -3,12 +3,7 @@
 // If Matrix[i][j]=-1, it means there is no edge from i to j.
 // Note : Modify the distances for every pair in-place.
 
-
-
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
+#include <bits/stdc++.h>
 using namespace std;
 
 // Function to calculate the shortest distance between all pairs of nodes
@@ -41,7 +36,7 @@ void shortest_distance(vector<vector<int>>& matrix) {
 
     // checking for negative cycle
     for(int i = 0; i < n; i++){
-        if(matrix[i][i] < 0) cout << "HAve Negative Cycle" << endl;
+        if(matrix[i][i] < 0) cout << "Have Negative Cycle" << endl;
     }
 
 

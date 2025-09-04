@@ -53,32 +53,32 @@ vector<int> dijkstra(int V, vector<pair<int, int>> adj[], int S) {
 
     // using Set
 
-    // vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int src) {
-    //     int V = adj.size();
+    vector<int> dijkstra(vector<vector<pair<int, int>>> &adj, int src) {
+        int V = adj.size();
         
-    //     vector<int> dis(V, 1e9);
-    //     set<pair<int, int>> st; // {distance, node}
-    //     st.insert({0, src});
-    //     dis[src] = 0;
+        vector<int> dis(V, 1e9);
+        set<pair<int, int>> st; // {distance, node}
+        st.insert({0, src});
+        dis[src] = 0;
         
-    //     while (!st.empty()) {
-    //         auto it = *(st.begin()); // Smallest distance node
-    //         int currDis = it.first;
-    //         int node = it.second;
-    //         st.erase(it);
+        while (!st.empty()) {
+            auto it = *(st.begin()); // Smallest distance node
+            int currDis = it.first;
+            int node = it.second;
+            st.erase(it);
     
-    //         for (auto edge : adj[node]) {
-    //             int v = edge.first;   // Neighbor node
-    //             int wt = edge.second; // Edge weight
+            for (auto edge : adj[node]) {
+                int v = edge.first;   // Neighbor node
+                int wt = edge.second; // Edge weight
     
-    //             if (currDis + wt < dis[v]) {
-    //                 if (dis[v] != 1e9) {
-    //                     st.erase({dis[v], v}); // Remove outdated entry
-    //                 }
-    //                 dis[v] = currDis + wt;
-    //                 st.insert({dis[v], v}); // Insert updated entry
-    //             }
-    //         }
-    //     }
-    //     return dis;
-    // }
+                if (currDis + wt < dis[v]) {
+                    if (dis[v] != 1e9) {
+                        st.erase({dis[v], v}); // Remove outdated entry
+                    }
+                    dis[v] = currDis + wt;
+                    st.insert({dis[v], v}); // Insert updated entry
+                }
+            }
+        }
+        return dis;
+    }
