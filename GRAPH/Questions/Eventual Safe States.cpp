@@ -7,34 +7,60 @@
 
 
 
-    // vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+// User function Template for C++
+
+class Solution {
+  public:
+    vector<int> eventualSafeNodes(int V, vector<int> adj[]) {
+        // code here
         
-    //     vector<int> Revadj[V];
-    //     vector<int>indegree(V,0);
+        vector<int>ans;
         
-    //     for(int i = 0; i < V; i++){
-    //         for(auto it : adj[i]){
-    //             Revadj[it].push_back(i);
-    //             indegree[i]++;
-    //         }
-    //     }
+        vector<int>adjT[V];
         
-    //     queue<int>q;
-    //     for(int i = 0; i < V; i++){
-    //         if(indegree[i] == 0) q.push(i);
-    //     }
+        for(int i = 0; i < V; i++){
+            for(int it : adj[i]){
+                adjT[it].push_back(i);
+            }
+        }
         
-    //     vector<int>ans;
+        vector<int>outDegree(V, 0);
         
-    //     while(!q.empty()){
-    //         int node = q.front();
-    //         q.pop();
-    //         ans.push_back(node);
-    //         for(auto it : Revadj[node]){
-    //             indegree[it]--;
-    //             if(indegree[it] == 0) q.push(it);
-    //         }
-    //     }
-    //     sort(ans.begin(),ans.end());
-    //     return ans;
-    // }
+        for(int i = 0; i < V; i++){
+            for(int it : adjT[i]){
+                outDegree[it]++;
+            }
+        }
+        
+        queue<int>q;
+        
+        for(int i = 0; i < V; i++){
+            if(outDegree[i] == 0) q.push(i);
+        }
+        
+        vector<bool>vis(V, false);
+        
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            
+            vis[node] = true;
+            
+            ans.push_back(node);
+            
+            for(int it : adjT[node]){
+                outDegree[it]--;
+                
+                if(!vis[it] && outDegree[it] == 0){
+                    q.push(it);
+                }
+            }
+            
+        }
+        
+        sort(ans.begin(), ans.end());
+        
+        return ans;
+        
+    }
+};
