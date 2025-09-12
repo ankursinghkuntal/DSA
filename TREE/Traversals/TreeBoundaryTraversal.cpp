@@ -1,12 +1,7 @@
 // Anti ClockWise
-
-
-
-
 #include <iostream>
 #include <vector>
 #include <algorithm>  // For reverse()
-
 using namespace std;
 
 struct Node {
