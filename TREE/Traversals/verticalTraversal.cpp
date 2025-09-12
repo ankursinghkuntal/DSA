@@ -1,45 +1,45 @@
-// class Solution {
-// public:
-//     // Function to find the vertical order traversal of Binary Tree.
-//     vector<vector<int>> verticalTraversal(TreeNode* root) {
-//         vector<vector<int>> vertical_traversal;
-//         if (!root) return vertical_traversal;
+class Solution {
+public:
+    // Function to find the vertical order traversal of Binary Tree.
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> vertical_traversal;
+        if (!root) return vertical_traversal;
         
-//         // q stores {node, {vertical, level}}
-//         queue<pair<TreeNode*, pair<int, int>>> q;
-//         q.push({root, {0, 0}}); // Start with the root at vertical = 0 and level = 0
+        // q stores {node, {vertical, level}}
+        queue<pair<TreeNode*, pair<int, int>>> q;
+        q.push({root, {0, 0}}); // Start with the root at vertical = 0 and level = 0
 
-//         // vertical -> level -> multiset of nodes at that level
-//         map<int, map<int, multiset<int>>> mp;
+        // vertical -> level -> multiset of nodes at that level
+        map<int, map<int, multiset<int>>> mp;
         
-//         // BFS traversal
-//         while (!q.empty()) {
-//             TreeNode* curr = q.front().first;
-//             int ver = q.front().second.first;
-//             int lev = q.front().second.second;
-//             mp[ver][lev].insert(curr->val);  // Insert node's value in the corresponding vertical and level
-//             q.pop();
+        // BFS traversal
+        while (!q.empty()) {
+            TreeNode* curr = q.front().first;
+            int ver = q.front().second.first;
+            int lev = q.front().second.second;
+            mp[ver][lev].insert(curr->val);  // Insert node's value in the corresponding vertical and level
+            q.pop();
             
-//             // Process left and right children
-//             if (curr->left) {
-//                 q.push({curr->left, {ver - 1, lev + 1}});
-//             }
-//             if (curr->right) {
-//                 q.push({curr->right, {ver + 1, lev + 1}});
-//             }
-//         }
+            // Process left and right children
+            if (curr->left) {
+                q.push({curr->left, {ver - 1, lev + 1}});
+            }
+            if (curr->right) {
+                q.push({curr->right, {ver + 1, lev + 1}});
+            }
+        }
 
-//         // Collecting the result from the map
-//         for (auto it : mp) {
-//             vector<int> temp;
-//             for (auto it1 : it.second) {
-//                 temp.insert(temp.end(), it1.second.begin(), it1.second.end());
-//             }
-//             vertical_traversal.push_back(temp);
-//         }
-//         return vertical_traversal;
-//     }
-// };
+        // Collecting the result from the map
+        for (auto it : mp) {
+            vector<int> temp;
+            for (auto it1 : it.second) {
+                temp.insert(temp.end(), it1.second.begin(), it1.second.end());
+            }
+            vertical_traversal.push_back(temp);
+        }
+        return vertical_traversal;
+    }
+};
 
 
 
