@@ -75,7 +75,7 @@ class Solution {
         Node*rightHead = mid->next;
         mid->next = NULL;
         
-        leftHead = merge(leftHead);
+        leftHead = mergeSort(leftHead);
         rightHead = mergeSort(rightHead);
         
         return merge(leftHead,rightHead);
