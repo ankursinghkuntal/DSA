@@ -1,3 +1,62 @@
+class Solution {
+  public:
+    
+    
+    int rec(vector<int>&arr, int sum, int n){
+        
+        // if(sum == 0) return 1;
+        if(n == 0) {
+            return (sum == 0 ? 1 : 0);
+        }
+
+        
+        if(sum >= arr[n-1]){
+            int p1 = rec(arr, sum-arr[n-1], n-1);
+            int p2 = rec(arr, sum, n-1);
+            return p1+p2;
+        } else {
+            return rec(arr, sum, n-1);
+        }
+
+    }
+    
+    int memo(vector<int>&arr, int sum, int n, vector<vector<int>>& dp){
+        
+        if(n == 0){
+            return (sum == 0 ? 1 : 0);
+        }
+        
+        if(dp[sum][n] != -1) return dp[sum][n];
+        
+        if(sum >= arr[n-1]){
+            int p1 = memo(arr, sum-arr[n-1], n-1, dp);
+            int p2 = memo(arr, sum, n-1, dp);
+            
+            return dp[sum][n] =  p1 + p2;
+        }else{
+            return memo(arr, sum, n-1, dp);
+        }
+    }
+  
+    int perfectSum(vector<int>& arr, int target) {
+        // code here
+        
+        int n = arr.size();
+        // return rec(arr, target, n);
+        
+        vector<vector<int>>dp(target+1, vector<int>(n+1, -1));
+        return memo(arr, target, n, dp);
+        
+    }
+};
+
+
+
+
+
+
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
