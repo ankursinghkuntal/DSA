@@ -8,25 +8,25 @@
 
 
 
-    // Node* buildTree(vector<int>& postorder, int postStart, int postEnd, vector<int>& inorder, int inStart, int inEnd, map<int,int>& inMap) {
-    //     if (postStart > postEnd || inStart > inEnd) return NULL;
+    Node* buildTree(vector<int>& postorder, int postStart, int postEnd, vector<int>& inorder, int inStart, int inEnd, map<int,int>& inMap) {
+        if (postStart > postEnd || inStart > inEnd) return NULL;
 
-    //     Node* root = new Node(postorder[postEnd]);
-    //     int inRoot = inMap[root->data];
-    //     int numsLeft = inRoot - inStart;
+        Node* root = new Node(postorder[postEnd]);
+        int inRoot = inMap[root->data];
+        int numsLeft = inRoot - inStart;
 
-    //     root->left = buildTree(postorder, postStart, postStart + numsLeft - 1, inorder, inStart, inRoot - 1, inMap);
-    //     root->right = buildTree(postorder, postStart + numsLeft, postEnd - 1, inorder, inRoot + 1, inEnd, inMap);
+        root->left = buildTree(postorder, postStart, postStart + numsLeft - 1, inorder, inStart, inRoot - 1, inMap);
+        root->right = buildTree(postorder, postStart + numsLeft, postEnd - 1, inorder, inRoot + 1, inEnd, inMap);
 
-    //     return root;
-    // }
+        return root;
+    }
 
-    // Node* buildTree(vector<int> inorder, vector<int> postorder) {
-    //     int n = inorder.size();
-    //     map<int,int> inMap;
-    //     for (int i = 0; i < n; i++) {
-    //         inMap[inorder[i]] = i;
-    //     }
+    Node* buildTree(vector<int> inorder, vector<int> postorder) {
+        int n = inorder.size();
+        map<int,int> inMap;
+        for (int i = 0; i < n; i++) {
+            inMap[inorder[i]] = i;
+        }
 
-    //     return buildTree(postorder, 0, n - 1, inorder, 0, n - 1, inMap);
-    // }
+        return buildTree(postorder, 0, n - 1, inorder, 0, n - 1, inMap);
+    }

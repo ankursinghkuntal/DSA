@@ -1,55 +1,65 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Trienode{
-    bool isEndOfWord;
-    Trienode* chindren[26];
+bool isSafe(vector<string>&str, int row, int col){
 
-    public:
+    int n = str.size();
 
-    Trienode(){
-        isEndOfWord = false;
-        for(int i = 0; i < 26; i++)
-            chindren[i] = NULL;
+    int tRow = row;
+    int tCol = col;
+
+    while(tRow >= 0 && tCol >= 0){
+        if(str[tRow][tCol] == 'Q') return false;
+        tCol--;
+        tRow--;
     }
+
+    tRow = row;
+    tCol = col;
+
+    while(tCol >= 0){
+        if(str[tRow][tCol] == 'Q') return false;
+        tCol--;
+    }
+
+    tRow = row;
+    tCol = col;
+
+    while(tRow < n && tCol >= 0){
+        if(str[tRow][tCol] == 'Q') return false;
+        tRow++;
+        tCol--;
+    }
+
+    return true;
 }
 
-class Trie{
-    private:
-    Trienode* root;
-
-    public:
-
-    Trie(){
-        root = new TrieNode();
+void solve(vector<vector<string>>&ans, vector<string>&str, int n, int col){
+    if(col == n){
+        ans.push_back(str);
+        return;
     }
 
-    void insert(string &str){
-        Trienode* node = root;
-        for(char ch : str){
-            int idx = ch - 'a';
-            if(node->children[idx] == NULL){
-                node->children[idx] = new Trienode();
-            }
-            node = node->chindren[idx];
-        }
-        node->isEndOfWord = true;
-    }
-
-    bool search(string &str){
-        for(cher ch : str){
-            int idx = ch - 'a';
-            if(node->children[idx] == NULL) return false;
-            node = node->chindren[idx];
-        }
-        return
-    }
-
-    bool prefixCheck(string &pre){
-        for(char ch : pre){
-            int idx = ch - 'a';
-            if(node->children[idx] == NULL)  return false;
-            node = node -> children[idx];
+    for(int row = 0; row < n; row++){
+        if(isSafe(str, row, col)){
+            str[row][col] = 'Q';
+            solve(ans, str, n, col+1);
+            str[row][col] = '.';  // backtracking
         }
     }
+
+}
+
+int main(){
+
+    int n = 8;
+
+    vector<vector<string>>ans;
+    vector<string>str(n, string(n, '.'));
+
+    solve(ans, str, n, 0);
+
+    cout << ans.size() << endl;
+
+    return 0;
 }

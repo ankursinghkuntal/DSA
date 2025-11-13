@@ -4,66 +4,66 @@
 
 
 
-    // bool bfs(int S, vector<int>adj[], vector<int>& color){
+    bool bfs(int S, vector<int>adj[], vector<int>& color){
         
-    //     color[S] = 0;
-    //     queue<int>q;
-    //     q.push(S);
+        color[S] = 0;
+        queue<int>q;
+        q.push(S);
         
-    //     while(!q.empty()){
-    //         int node = q.front();
-    //         q.pop();
-    //         for(auto it : adj[node]){
-    //             if(color[it] == 2){
-    //                 color[it] = !color[node];
-    //                 q.push(it);
-    //             }
-    //             else if(color[it] == color[node]) return false;
-    //         }
-    //     }
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            for(auto it : adj[node]){
+                if(color[it] == 2){
+                    color[it] = !color[node];
+                    q.push(it);
+                }
+                else if(color[it] == color[node]) return false;
+            }
+        }
         
-    //     return true;
-    // }
+        return true;
+    }
 
-	// bool isBipartite(int V, vector<int>adj[]){
+	bool isBipartite(int V, vector<int>adj[]){
 	    
-	//     vector<int>color(V,2);
+	    vector<int>color(V,2);
 	    
-	//     for(int i = 0; i < V; i++){
-	//         if(color[i] == 2){
-	//             if (!bfs(i, adj, color)) return false;
-	//         }
-	//     }
-	//     return true;
-	// }
+	    for(int i = 0; i < V; i++){
+	        if(color[i] == 2){
+	            if (!bfs(i, adj, color)) return false;
+	        }
+	    }
+	    return true;
+	}
 
 
 
 
 
 
-    // bool dfs(int S, vector<int>adj[], vector<int>& color, int newcolor){
+    bool dfs(int S, vector<int>adj[], vector<int>& color, int newcolor){
         
-    //     color[S] = newcolor;
-    //     for(auto it : adj[S]){
-    //         if(color[it] == 2){
-    //             if(!dfs(it, adj, color, !newcolor)) return false;
-    //         }
-    //         else if(color[it] == color[S]) return false;
-    //     }
+        color[S] = newcolor;
+        for(auto it : adj[S]){
+            if(color[it] == 2){
+                if(!dfs(it, adj, color, !newcolor)) return false;
+            }
+            else if(color[it] == color[S]) return false;
+        }
         
-    //     return true;
-    // }
+        return true;
+    }
 
-	// bool isBipartite(int V, vector<int>adj[]){
+	bool isBipartite(int V, vector<int>adj[]){
 	    
-	//     vector<int>color(V,2);
+	    vector<int>color(V,2);
 	    
-	//     for(int i = 0; i < V; i++){
-	//         if(color[i] == 2){
-	//             if (!dfs(i, adj, color, 0)) return false;
-	//         }
-	//     }
-	//     return true;
+	    for(int i = 0; i < V; i++){
+	        if(color[i] == 2){
+	            if (!dfs(i, adj, color, 0)) return false;
+	        }
+	    }
+	    return true;
 	    
-	// }
+	}

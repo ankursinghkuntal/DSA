@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 #define INF 1e9
 
 void bellmanFord(int V, int E, int source, vector<pair<int, pair<int, int>>>& edges) {
